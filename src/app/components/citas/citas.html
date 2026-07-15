@@ -1,0 +1,35 @@
+<button (click)="toggleCitas()">
+  {{ mostrar ? 'Ocultar citas' : 'Ver citas' }}
+</button>
+
+<div *ngIf="mostrar">
+  <div *ngIf="citas.length > 0; else noData">
+    
+    <div *ngFor="let cita of citas" class="card">
+      <p><strong>Nombre:</strong> {{ cita.nombre }}</p>
+      <p><strong>Apellido:</strong> {{ cita.apellido }}</p>
+      <p><strong>Documento:</strong> {{ cita.documento }}</p>
+      <p><strong>Estado:</strong> {{ cita.estado }}</p>
+    </div>
+
+  </div>
+
+  <ng-template #noData>
+    <p>No hay citas disponibles</p>
+  </ng-template>
+</div>
+<h2>Agendar Cita</h2>
+
+<form (ngSubmit)="agendarCita()">
+
+  <input type="text" placeholder="Nombre" [(ngModel)]="nuevaCita.nombre" name="nombre" required>
+
+  <input type="text" placeholder="Apellido" [(ngModel)]="nuevaCita.apellido" name="apellido" required>
+
+  <input type="text" placeholder="Documento" [(ngModel)]="nuevaCita.documento" name="documento" required>
+
+  <input type="datetime-local" [(ngModel)]="nuevaCita.fecha" name="fecha" required>
+
+  <button type="submit">Agendar</button>
+
+</form>
