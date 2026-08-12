@@ -1,0 +1,206 @@
+/* ===========================
+   ESTILO GENERAL
+=========================== */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* ===========================
+   CONTENEDOR
+=========================== */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.3);
+    box-sizing: border-box;
+}
+
+/* ===========================
+   TITULOS
+=========================== */
+.titulo{
+    text-align: center;
+    color: #0f172a;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+h2{
+    color: #334155;
+    margin-bottom: 15px;
+    border-left: 5px solid #3b82f6;
+    padding-left: 10px;
+}
+
+/* ===========================
+   BOTONES
+=========================== */
+.acciones{
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.btn{
+    background: linear-gradient(90deg,#2563eb,#3b82f6);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px 18px rgba(59,130,246,.4);
+}
+
+/* ===========================
+   FORMULARIO
+=========================== */
+form{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+
+.campo{
+    display: flex;
+    flex-direction: column;
+}
+
+.campo:last-child{
+    grid-column: span 2;
+}
+
+label{
+    margin-bottom: 8px;
+    color: #475569;
+    font-weight: 600;
+}
+
+input{
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: .3s;
+}
+
+input:focus{
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 10px rgba(37,99,235,.25);
+}
+
+/* ===========================
+   TARJETAS
+=========================== */
+.card{
+    margin-top: 18px;
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 20px;
+    border-left: 6px solid #2563eb;
+    transition: .3s;
+}
+
+.card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.15);
+}
+
+.fila{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.label{
+    color: #0f172a;
+    font-weight: bold;
+}
+
+/* ===========================
+   ESTADOS
+=========================== */
+.estado{
+    background: #22c55e;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* ===========================
+   MENSAJE
+=========================== */
+.sin-datos{
+    background: #fee2e2;
+    color: #b91c1c;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+/* ===========================
+   ESPACIADO
+=========================== */
+.seccion{
+    margin-bottom: 40px;
+}
+
+.formulario{
+    margin-top: 30px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media(max-width:768px){
+
+    .container{
+        padding:25px;
+    }
+
+    form{
+        grid-template-columns:1fr;
+    }
+
+    .campo:last-child{
+        grid-column:span 1;
+    }
+
+    .fila{
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .titulo{
+        font-size:28px;
+    }
+}

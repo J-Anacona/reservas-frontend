@@ -1,35 +1,85 @@
-<button (click)="toggleCitas()">
-  {{ mostrar ? 'Ocultar citas' : 'Ver citas' }}
-</button>
+<div class="container">
 
-<div *ngIf="mostrar">
-  <div *ngIf="citas.length > 0; else noData">
-    
-    <div *ngFor="let cita of citas" class="card">
-      <p><strong>Nombre:</strong> {{ cita.nombre }}</p>
-      <p><strong>Apellido:</strong> {{ cita.apellido }}</p>
-      <p><strong>Documento:</strong> {{ cita.documento }}</p>
-      <p><strong>Estado:</strong> {{ cita.estado }}</p>
+    <h1 class="titulo">
+        Gestión de Citas
+    </h1>
+
+    <div class="acciones">
+
+        <button
+            class="btn"
+            routerLink="/view-appointments">
+
+            Ver Citas
+
+        </button>
+
     </div>
 
-  </div>
+    <div class="formulario">
 
-  <ng-template #noData>
-    <p>No hay citas disponibles</p>
-  </ng-template>
+        <h2>Agendar Nueva Cita</h2>
+
+        <form (ngSubmit)="agendarCita()">
+
+            <div class="campo">
+
+                <label>Nombre</label>
+
+                <input
+                    type="text"
+                    [(ngModel)]="nuevaCita.nombre"
+                    name="nombre"
+                    required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Apellido</label>
+
+                <input
+                    type="text"
+                    [(ngModel)]="nuevaCita.apellido"
+                    name="apellido"
+                    required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Documento</label>
+
+                <input
+                    type="text"
+                    [(ngModel)]="nuevaCita.documento"
+                    name="documento"
+                    required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Fecha y Hora</label>
+
+                <input
+                    type="datetime-local"
+                    [(ngModel)]="nuevaCita.fecha"
+                    name="fecha"
+                    required>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn">
+
+                Agendar Cita
+
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
-<h2>Agendar Cita</h2>
-
-<form (ngSubmit)="agendarCita()">
-
-  <input type="text" placeholder="Nombre" [(ngModel)]="nuevaCita.nombre" name="nombre" required>
-
-  <input type="text" placeholder="Apellido" [(ngModel)]="nuevaCita.apellido" name="apellido" required>
-
-  <input type="text" placeholder="Documento" [(ngModel)]="nuevaCita.documento" name="documento" required>
-
-  <input type="datetime-local" [(ngModel)]="nuevaCita.fecha" name="fecha" required>
-
-  <button type="submit">Agendar</button>
-
-</form>
