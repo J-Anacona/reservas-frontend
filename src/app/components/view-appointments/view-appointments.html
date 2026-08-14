@@ -1,0 +1,94 @@
+<div class="container">
+
+    <h1 class="titulo">
+        Listado de Citas
+    </h1>
+
+    <div class="acciones">
+
+        <button
+            class="btn"
+            routerLink="/citas">
+
+            Nueva Cita
+
+        </button>
+
+    </div>
+
+
+    <div class="lista-citas">
+
+        <div
+            class="card"
+            *ngFor="let cita of citas">
+
+            <div class="fila">
+
+                <span class="label">
+                    Nombre:
+                </span>
+
+                <span>
+                    {{ cita.nombre }}
+                </span>
+
+            </div>
+
+
+            <div class="fila">
+
+                <span class="label">
+                    Apellido:
+                </span>
+
+                <span>
+                    {{ cita.apellido }}
+                </span>
+
+            </div>
+
+
+            <div class="fila">
+
+                <span class="label">
+                    Documento:
+                </span>
+
+                <span>
+                    {{ cita.documento }}
+                </span>
+
+            </div>
+
+
+            <div class="fila">
+
+                <span class="label">
+                    Fecha:
+                </span>
+
+                <span>
+                    {{ cita.fecha }}
+                </span>
+
+            </div>
+
+
+            <div class="fila">
+
+                <span class="label">
+                    Estado:
+                </span>
+
+                <span class="estado">
+                    {{ cita.estado }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
