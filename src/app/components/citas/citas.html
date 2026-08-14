@@ -1,85 +1,172 @@
 <div class="container">
 
-    <h1 class="titulo">
-        Gestión de Citas
-    </h1>
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
 
-    <div class="acciones">
+        <div class="encabezado-texto">
 
-        <button
-            class="btn"
-            routerLink="/view-appointments">
+            <span class="etiqueta">
+                GESTIÓN DE CITAS
+            </span>
 
-            Ver Citas
+            <h1 class="titulo">
+                Agenda tu cita
+            </h1>
 
-        </button>
+            <p class="descripcion">
+                Registra una nueva cita de manera rápida, sencilla y organizada.
+            </p>
 
-    </div>
+        </div>
 
-    <div class="formulario">
-
-        <h2>Agendar Nueva Cita</h2>
-
-        <form (ngSubmit)="agendarCita()">
-
-            <div class="campo">
-
-                <label>Nombre</label>
-
-                <input
-                    type="text"
-                    [(ngModel)]="nuevaCita.nombre"
-                    name="nombre"
-                    required>
-
-            </div>
-
-            <div class="campo">
-
-                <label>Apellido</label>
-
-                <input
-                    type="text"
-                    [(ngModel)]="nuevaCita.apellido"
-                    name="apellido"
-                    required>
-
-            </div>
-
-            <div class="campo">
-
-                <label>Documento</label>
-
-                <input
-                    type="text"
-                    [(ngModel)]="nuevaCita.documento"
-                    name="documento"
-                    required>
-
-            </div>
-
-            <div class="campo">
-
-                <label>Fecha y Hora</label>
-
-                <input
-                    type="datetime-local"
-                    [(ngModel)]="nuevaCita.fecha"
-                    name="fecha"
-                    required>
-
-            </div>
+        <div class="acciones">
 
             <button
-                type="submit"
-                class="btn">
+                class="btn btn-secundario"
+                routerLink="/view-appointments">
 
-                Agendar Cita
+                <span class="icono">☷</span>
+
+                Ver Citas
 
             </button>
 
-        </form>
+        </div>
 
-    </div>
+    </header>
+
+
+    <!-- CONTENIDO -->
+    <main class="contenido">
+
+        <section class="formulario">
+
+            <!-- TÍTULO DEL FORMULARIO -->
+            <div class="formulario-header">
+
+                <div>
+                    <h2>
+                      Completa los datos del paciente para registrar la cita.
+                    </h2>
+
+                    <p>
+                        
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- FORMULARIO -->
+            <form (ngSubmit)="agendarCita()">
+
+                <div class="campos">
+
+                    <!-- NOMBRE -->
+                    <div class="campo">
+
+                        <label for="nombre">
+                            Nombre
+                        </label>
+
+                        <input
+                            id="nombre"
+                            type="text"
+                            [(ngModel)]="nuevaCita.nombre"
+                            name="nombre"
+                            placeholder="Ingrese el nombre"
+                            autocomplete="given-name"
+                            required>
+
+                    </div>
+
+
+                    <!-- APELLIDO -->
+                    <div class="campo">
+
+                        <label for="apellido">
+                            Apellido
+                        </label>
+
+                        <input
+                            id="apellido"
+                            type="text"
+                            [(ngModel)]="nuevaCita.apellido"
+                            name="apellido"
+                            placeholder="Ingrese el apellido"
+                            autocomplete="family-name"
+                            required>
+
+                    </div>
+
+
+                    <!-- DOCUMENTO -->
+                    <div class="campo">
+
+                        <label for="documento">
+                            Documento
+                        </label>
+
+                        <input
+                            id="documento"
+                            type="text"
+                            [(ngModel)]="nuevaCita.documento"
+                            name="documento"
+                            placeholder="Ingrese el documento"
+                            inputmode="numeric"
+                            required>
+
+                    </div>
+
+
+                    <!-- FECHA Y HORA -->
+                    <div class="campo">
+
+                        <label for="fecha">
+                            Fecha y Hora
+                        </label>
+
+                        <input
+                            id="fecha"
+                            type="datetime-local"
+                            [(ngModel)]="nuevaCita.fecha"
+                            name="fecha"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SEPARADOR -->
+                <div class="separador"></div>
+
+
+                <!-- BOTÓN -->
+                <div class="formulario-footer">
+
+                    <span class="ayuda">
+                        Verifica los datos antes de agendar.
+                    </span>
+
+                    <button
+                        type="submit"
+                        class="btn btn-principal">
+
+                        <span class="icono-boton">
+                            ✓
+                        </span>
+
+                        Agendar Cita
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
 
 </div>
