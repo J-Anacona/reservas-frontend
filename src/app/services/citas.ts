@@ -11,10 +11,19 @@ export class CitasService {
 
   constructor(private http: HttpClient) {}
 
+  // Barbero: todas las citas. Usuario: solo las suyas (el backend filtra por rol)
   getCitas(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
   }
-  crearCita(cita: any) {
-  return this.http.post(this.apiUrl, cita);
-}
+
+  getMisCitas(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
+
+  // Solo se manda la fecha, en UTC
+  crearCita(fecha: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl, {
+      fecha: new Date(fecha).toISOString()
+    });
+  }
 }

@@ -1,89 +1,64 @@
-<div class="container">
+<div class="listado">
 
-    <h1 class="titulo">
-        Listado de Citas
-    </h1>
+    <!-- BARRA SUPERIOR -->
+    <header class="barra">
+        <span class="logo">Barbería</span>
+    </header>
 
-    <div class="acciones">
+    <div class="container">
 
-        <button
-            class="btn"
-            routerLink="/citas">
+        <!-- ENCABEZADO -->
+        <div class="encabezado">
+            <span class="etiqueta">Gestión de citas</span>
+            <h1 class="titulo">Listado de citas</h1>
+        </div>
 
-            Nueva Cita
+        <!-- ACCIONES -->
+        <div class="acciones">
+            <button type="button" class="btn" routerLink="/citas">
+                <span>Nueva cita</span>
+                <span class="flecha">→</span>
+            </button>
+        </div>
 
-        </button>
+        <!-- SIN CITAS -->
+        <div class="sin-datos" *ngIf="!citas.length">
+            Aún no hay citas registradas.
+        </div>
 
-    </div>
+        <!-- LISTA -->
+        <div class="lista-citas" *ngIf="citas.length">
 
+            <div class="card" *ngFor="let cita of citas">
 
-    <div class="lista-citas">
+                <ng-container *ngIf="esBarbero">
 
-        <div
-            class="card"
-            *ngFor="let cita of citas">
+                    <div class="fila">
+                        <span class="label">Nombre</span>
+                        <span class="valor">{{ cita.nombre }}</span>
+                    </div>
 
-            <div class="fila">
+                    <div class="fila">
+                        <span class="label">Apellido</span>
+                        <span class="valor">{{ cita.apellido }}</span>
+                    </div>
 
-                <span class="label">
-                    Nombre:
-                </span>
+                    <div class="fila">
+                        <span class="label">Documento</span>
+                        <span class="valor">{{ cita.documento }}</span>
+                    </div>
 
-                <span>
-                    {{ cita.nombre }}
-                </span>
+                </ng-container>
 
-            </div>
+                <div class="fila">
+                    <span class="label">Fecha</span>
+                    <span class="valor">{{ cita.fecha }}</span>
+                </div>
 
-
-            <div class="fila">
-
-                <span class="label">
-                    Apellido:
-                </span>
-
-                <span>
-                    {{ cita.apellido }}
-                </span>
-
-            </div>
-
-
-            <div class="fila">
-
-                <span class="label">
-                    Documento:
-                </span>
-
-                <span>
-                    {{ cita.documento }}
-                </span>
-
-            </div>
-
-
-            <div class="fila">
-
-                <span class="label">
-                    Fecha:
-                </span>
-
-                <span>
-                    {{ cita.fecha }}
-                </span>
-
-            </div>
-
-
-            <div class="fila">
-
-                <span class="label">
-                    Estado:
-                </span>
-
-                <span class="estado">
-                    {{ cita.estado }}
-                </span>
+                <div class="fila">
+                    <span class="label">Estado</span>
+                    <span class="estado">{{ cita.estado }}</span>
+                </div>
 
             </div>
 

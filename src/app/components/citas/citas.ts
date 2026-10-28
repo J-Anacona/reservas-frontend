@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CitasService } from '../../services/citas';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-citas',
@@ -13,41 +14,35 @@ import { CitasService } from '../../services/citas';
 })
 export class CitasComponent {
 
-  nuevaCita = {
-    nombre: '',
-    apellido: '',
-    documento: '',
-    fecha: ''
-  };
+  fecha = '';
 
-  constructor(private citasService: CitasService) {}
+  constructor(
+    private citasService: CitasService,
+    private auth: Auth,
+    private router: Router
+  ) {}
 
   agendarCita(): void {
 
-    this.citasService.crearCita(this.nuevaCita).subscribe({
+    this.citasService.crearCita(this.fecha).subscribe({
 
       next: () => {
-
         alert("Cita agendada correctamente ✅");
-
-        this.nuevaCita = {
-          nombre: '',
-          apellido: '',
-          documento: '',
-          fecha: ''
-        };
-
+        this.fecha = '';
       },
 
       error: (err) => {
-
         console.error(err);
-        alert(err.error);
-
+        alert(typeof err.error === 'string' ? err.error : 'No se pudo agendar la cita');
       }
 
     });
 
+  }
+
+  cerrarSesion(): void {
+    this.auth.logout();
+    this.router.navigate(['/login'], { replaceUrl: true });
   }
 
 }

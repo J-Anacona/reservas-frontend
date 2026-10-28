@@ -1,534 +1,351 @@
-/* ==============================
-   CONFIGURACIÓN GENERAL
-   ============================== */
-
-* {
-    box-sizing: border-box;
+:host {
+    display: block;
 }
 
-body {
-    margin: 0;
-    padding: 0;
+.citas {
+    --oscuro: #0f0f0f;
+    --claro: #f4efe8;
+    --acento: #b8763e;
+    --tijera: #d08a4e;
+    --linea: #cfc7bb;
+    --gris: #7a7266;
 
-    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-
-    background: #eef2f7;
-
-    color: #1f2937;
+    position: fixed;
+    inset: 0;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    background: var(--claro);
+    color: var(--oscuro);
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
+/* BARRA SUPERIOR */
 
-/* ==============================
-   CONTENEDOR PRINCIPAL
-   ============================== */
+.barra {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: var(--oscuro);
+    color: var(--claro);
+    animation: bajar .8s cubic-bezier(.77, 0, .18, 1) both;
+}
 
-.container {
+.logo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+}
+
+.enlace {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .2rem 0;
+    border: 0;
+    background: transparent;
+    color: var(--claro);
+    font-family: inherit;
+    font-size: .72rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.enlace:first-child {
+    justify-self: start;
+}
+
+.enlace:last-child {
+    justify-self: end;
+}
+
+.enlace::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    max-width: 1100px;
-
-    min-height: 100vh;
-
-    margin: 0 auto;
-
-    padding: 45px 35px;
+    height: 1px;
+    background: var(--acento);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .4s ease;
 }
 
+.enlace:hover {
+    color: var(--tijera);
+}
 
-/* ==============================
-   ENCABEZADO
-   ============================== */
+.enlace:hover::after {
+    transform: scaleX(1);
+}
+
+.flecha-atras,
+.flecha-sig {
+    transition: transform .3s;
+}
+
+.enlace:hover .flecha-atras {
+    transform: translateX(-4px);
+}
+
+.enlace:hover .flecha-sig {
+    transform: translateX(4px);
+}
+
+/* CONTENIDO */
+
+.contenido {
+    flex: 1;
+    width: 100%;
+    max-width: 560px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contenido > * {
+    animation: subir .8s both;
+}
+
+.contenido > :nth-child(1) { animation-delay: .3s; }
+.contenido > :nth-child(2) { animation-delay: .5s; }
+
+/* ENCABEZADO */
 
 .encabezado {
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 40px;
-
-    margin-bottom: 32px;
-}
-
-.encabezado-texto {
-    flex: 1;
+    margin-bottom: 2.5rem;
 }
 
 .etiqueta {
-    display: inline-block;
-
-    margin-bottom: 8px;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    letter-spacing: 1.5px;
-
-    color: #2563eb;
+    display: block;
+    font-size: .75rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--acento);
 }
 
 .titulo {
-    margin: 0;
-
-    font-size: 36px;
-    font-weight: 750;
-
-    letter-spacing: -0.8px;
-
-    color: #111827;
+    margin: .5rem 0 .8rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 2.4rem;
 }
 
 .descripcion {
-    margin: 9px 0 0;
-
-    max-width: 600px;
-
-    font-size: 15px;
+    margin: 0;
+    font-size: .9rem;
     line-height: 1.6;
-
-    color: #6b7280;
+    color: var(--gris);
 }
 
-
-/* ==============================
-   ACCIONES
-   ============================== */
-
-.acciones {
-    display: flex;
-
-    justify-content: flex-end;
-
-    flex-shrink: 0;
-}
-
-
-/* ==============================
-   BOTONES
-   ============================== */
-
-.btn {
-    border: none;
-
-    border-radius: 10px;
-
-    padding: 13px 20px;
-
-    font-family: inherit;
-
-    font-size: 14px;
-    font-weight: 650;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-.btn:active {
-    transform: translateY(0);
-}
-
-
-/* ==============================
-   BOTÓN VER CITAS
-   ============================== */
-
-.btn-secundario {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 9px;
-
-    min-width: 145px;
-
-    background: #ffffff;
-
-    color: #374151;
-
-    border: 1px solid #dbe1e8;
-
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.btn-secundario:hover {
-    background: #f8fafc;
-
-    border-color: #cbd5e1;
-
-    box-shadow:
-        0 7px 18px rgba(0, 0, 0, 0.09);
-}
-
-
-/* ==============================
-   BOTÓN AGENDAR
-   ============================== */
-
-.btn-principal {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 9px;
-
-    min-width: 180px;
-
-    padding: 14px 22px;
-
-    background: #2563eb;
-
-    color: #ffffff;
-
-    box-shadow:
-        0 6px 16px rgba(37, 99, 235, 0.22);
-}
-
-.btn-principal:hover {
-    background: #1d4ed8;
-
-    box-shadow:
-        0 9px 22px rgba(37, 99, 235, 0.28);
-}
-
-
-/* ==============================
-   ICONOS
-   ============================== */
-
-.icono {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 18px;
-
-    line-height: 1;
-}
-
-.icono-boton {
-    font-size: 16px;
-
-    font-weight: 700;
-}
-
-
-/* ==============================
-   CONTENIDO
-   ============================== */
-
-.contenido {
-    width: 100%;
-}
-
-
-/* ==============================
-   TARJETA DEL FORMULARIO
-   ============================== */
+/* FORMULARIO */
 
 .formulario {
-    width: 100%;
-
-    background: #ffffff;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 18px;
-
-    padding: 34px 40px;
-
-    box-shadow:
-        0 12px 30px rgba(15, 23, 42, 0.07);
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--linea);
 }
 
-
-/* ==============================
-   CABECERA DEL FORMULARIO
-   ============================== */
-
-.formulario-header {
-    margin-bottom: 34px;
+.subtitulo {
+    margin: 0 0 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--linea);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 1.15rem;
 }
 
-.formulario-header h2 {
-    margin: 0;
-
-    font-size: 22px;
-
-    font-weight: 700;
-
-    color: #111827;
-}
-
-.formulario-header p {
-    margin: 6px 0 0;
-
-    font-size: 13px;
-
-    color: #6b7280;
-}
-
-
-/* ==============================
-   CAMPOS
-   ============================== */
-
-.campos {
-    display: grid;
-
-    /*
-     * Dos columnas iguales
-     * con bastante separación
-     */
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
-
-    /*
-     * Separación horizontal
-     */
-    column-gap: 38px;
-
-    /*
-     * Separación vertical
-     */
-    row-gap: 27px;
-
-    width: 100%;
-}
-
-
-/* ==============================
-   CADA CAMPO
-   ============================== */
+/* CAMPO */
 
 .campo {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 9px;
-
-    min-width: 0;
+    position: relative;
+    margin-bottom: 2rem;
 }
 
 .campo label {
-    font-size: 13px;
-
-    font-weight: 650;
-
-    color: #374151;
+    display: block;
+    font-size: .72rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gris);
+    transition: color .3s;
 }
-
-
-/* ==============================
-   INPUTS
-   ============================== */
 
 .campo input {
-    display: block;
-
     width: 100%;
-
-    height: 48px;
-
-    padding: 0 14px;
-
-    border: 1px solid #d7dce3;
-
-    border-radius: 9px;
-
-    background: #ffffff;
-
-    color: #111827;
-
+    box-sizing: border-box;
+    padding: .6rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--linea);
+    background: transparent;
     font-family: inherit;
-
-    font-size: 14px;
-
+    font-size: 1rem;
+    color: var(--oscuro);
     outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
 }
 
-.campo input::placeholder {
-    color: #a1a8b3;
-}
-
-.campo input:hover {
-    border-color: #b9c1cc;
-}
-
-.campo input:focus {
-    border-color: #2563eb;
-
-    background: #ffffff;
-
-    box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.10);
-}
-
-
-/* ==============================
-   SEPARADOR
-   ============================== */
-
-.separador {
+.campo::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
     width: 100%;
-
-    height: 1px;
-
-    margin: 34px 0 24px;
-
-    background: #edf0f3;
+    height: 2px;
+    background: var(--acento);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .4s ease;
 }
 
+.campo:focus-within::after {
+    transform: scaleX(1);
+}
 
-/* ==============================
-   PARTE INFERIOR
-   ============================== */
+.campo:focus-within label {
+    color: var(--acento);
+}
+
+/* PIE DEL FORMULARIO */
 
 .formulario-footer {
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
-    gap: 25px;
+    gap: 1.5rem;
 }
 
 .ayuda {
-    font-size: 12px;
-
-    color: #8a929e;
+    font-size: .8rem;
+    color: var(--gris);
 }
 
+/* BOTÓN */
 
-/* ==============================
-   TABLET
-   ============================== */
+.boton {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 1rem 1.4rem;
+    border: 0;
+    background: var(--oscuro);
+    color: var(--claro);
+    font-family: inherit;
+    font-size: .8rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity .3s;
+}
 
-@media (max-width: 768px) {
+.boton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--acento);
+    transform: translateX(-101%);
+    transition: transform .45s cubic-bezier(.77, 0, .18, 1);
+}
 
-    .container {
-        padding: 30px 22px;
+.boton span {
+    position: relative;
+}
+
+.boton:hover:not(:disabled)::before {
+    transform: translateX(0);
+}
+
+.flecha {
+    transition: transform .3s;
+}
+
+.boton:hover:not(:disabled) .flecha {
+    transform: translateX(6px);
+}
+
+.boton:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+/* ANIMACIONES */
+
+@keyframes subir {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bajar {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 860px) {
+    .barra {
+        padding: 1rem 1.4rem;
     }
 
-    .encabezado {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 20px;
+    .logo {
+        display: none;
     }
 
-    .acciones {
-        width: 100%;
+    .barra {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .btn-secundario {
-        width: 100%;
+    .contenido {
+        padding: 2rem 1.4rem;
     }
 
     .titulo {
-        font-size: 30px;
+        font-size: 2rem;
     }
 
     .formulario {
-        padding: 28px 25px;
-    }
-
-    /*
-     * En tablet pasamos a una sola columna
-     * para evitar que los campos se compriman.
-     */
-    .campos {
-        grid-template-columns: 1fr;
-
-        row-gap: 22px;
+        padding: 1.5rem;
     }
 
     .formulario-footer {
+        flex-direction: column-reverse;
         align-items: stretch;
-
-        flex-direction: column;
+        gap: 1rem;
     }
 
     .ayuda {
         text-align: center;
     }
-
-    .btn-principal {
-        width: 100%;
-    }
 }
 
-
-/* ==============================
-   CELULAR
-   ============================== */
-
-@media (max-width: 480px) {
-
-    .container {
-        padding: 22px 15px;
-    }
-
-    .titulo {
-        font-size: 27px;
-    }
-
-    .descripcion {
-        font-size: 14px;
-    }
-
-    .formulario {
-        padding: 24px 18px;
-
-        border-radius: 14px;
-    }
-
-    .formulario-header {
-        margin-bottom: 26px;
-    }
-
-    .formulario-header h2 {
-        font-size: 19px;
-    }
-
-    .formulario-header p {
-        font-size: 12px;
-
-        line-height: 1.5;
-    }
-
-    .campos {
-        row-gap: 20px;
-    }
-
-    .campo input {
-        height: 46px;
-
-        font-size: 14px;
-    }
-
-    .separador {
-        margin: 27px 0 20px;
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
     }
 }
-
-
