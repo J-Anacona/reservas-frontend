@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -18,19 +19,20 @@ export class ViewAppointments implements OnInit {
   esBarbero = false;
 
   constructor(
-  private citasService: CitasService,
-  private auth: Auth,
-  private router: Router,
-  private cd: ChangeDetectorRef
-) {}
-
+    private citasService: CitasService,
+    private auth: Auth,
+    private router: Router,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.esBarbero = this.auth.esBarbero();
     this.obtenerCitas();
   }
 
+  // Obtener las citas desde la API
   obtenerCitas(): void {
+
     const peticion = this.esBarbero
       ? this.citasService.getCitas()
       : this.citasService.getMisCitas();
@@ -48,4 +50,12 @@ export class ViewAppointments implements OnInit {
 
     });
   }
+
+  // Mostrar únicamente las citas pendientes
+  get citasPendientes(): any[] {
+    return this.citas.filter(cita =>
+      cita.estado?.trim().toLowerCase() === 'pendiente'
+    );
+  }
+
 }

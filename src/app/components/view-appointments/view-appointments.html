@@ -1,3 +1,4 @@
+
 <div class="listado">
 
     <!-- BARRA SUPERIOR -->
@@ -21,16 +22,43 @@
             </button>
         </div>
 
-        <!-- SIN CITAS -->
-        <div class="sin-datos" *ngIf="!citas.length">
-            Aún no hay citas registradas.
+        <!-- SIN CITAS PENDIENTES -->
+        <div class="sin-datos" *ngIf="citasPendientes.length === 0">
+            No hay citas pendientes por el momento.
         </div>
 
-        <!-- LISTA -->
-        <div class="lista-citas" *ngIf="citas.length">
+        <!-- LISTA DE CITAS PENDIENTES -->
+        <div class="lista-citas" *ngIf="citasPendientes.length > 0">
 
-            <div class="card" *ngFor="let cita of citas">
+            <div
+                class="card card--pendiente"
+                *ngFor="let cita of citasPendientes">
 
+                <!-- HORA Y FECHA -->
+                <div class="momento">
+
+                    <div class="bloque">
+                        <span class="label">Hora</span>
+                        <span class="hora">{{ cita.hora }}</span>
+                    </div>
+
+                    <div class="bloque">
+                        <span class="label">Fecha</span>
+                        <span class="fecha">{{ cita.fecha }}</span>
+                    </div>
+
+                </div>
+
+                <!-- ESTADO -->
+                <div class="fila">
+                    <span class="label">Estado</span>
+
+                    <span class="estado estado--pendiente">
+                        {{ cita.estado }}
+                    </span>
+                </div>
+
+                <!-- DATOS DEL CLIENTE (SOLO BARBERO) -->
                 <ng-container *ngIf="esBarbero">
 
                     <div class="fila">
@@ -44,21 +72,11 @@
                     </div>
 
                     <div class="fila">
-                        <span class="label">Documento</span>
-                        <span class="valor">{{ cita.documento }}</span>
+                        <span class="label">Teléfono</span>
+                        <span class="valor">{{ cita.telefono }}</span>
                     </div>
 
                 </ng-container>
-
-                <div class="fila">
-                    <span class="label">Fecha</span>
-                    <span class="valor">{{ cita.fecha }}</span>
-                </div>
-
-                <div class="fila">
-                    <span class="label">Estado</span>
-                    <span class="estado">{{ cita.estado }}</span>
-                </div>
 
             </div>
 
