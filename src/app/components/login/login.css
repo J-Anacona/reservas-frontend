@@ -548,3 +548,61 @@
         display: none;
     }
 }
+
+/* CONTENEDOR DEL CAMPO DE CONTRASEÑA */
+.contenedor-password {
+    position: relative;
+    width: 100%;
+}
+
+/* INPUT DE CONTRASEÑA */
+.contenedor-password input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 45px;
+}
+
+/* BOTÓN DEL OJO */
+.boton-ojo {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background: transparent;
+    color: #b8763e;
+
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* TAMAÑO DEL ICONO */
+.boton-ojo svg {
+    width: 19px;
+    height: 19px;
+    display: block;
+}
+
+/* EFECTO HOVER */
+.boton-ojo:hover {
+    color: #d08a4e;
+}
+
+/* EVITA QUE HER EDE LOS ESTILOS DEL BOTÓN PRINCIPAL */
+.formulario .boton-ojo {
+    box-shadow: none;
+    letter-spacing: normal;
+    font-family: inherit;
+}

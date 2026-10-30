@@ -27,7 +27,8 @@
 .barra {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    position: relative;
     padding: 1.2rem 2.5rem;
     background: var(--oscuro);
     color: var(--claro);
@@ -35,12 +36,47 @@
 }
 
 .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: Georgia, "Times New Roman", serif;
     font-size: 1.2rem;
     letter-spacing: .35em;
     text-transform: uppercase;
 }
+/* BOTÓN ATRÁS */
 
+.enlace {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    border: none;
+    background: transparent;
+    color: var(--claro);
+    font-family: inherit;
+    font-size: .8rem;
+    letter-spacing: .08em;
+    cursor: pointer;
+    transition: color .3s ease;
+}
+
+.enlace:hover {
+    color: var(--tijera);
+}
+
+.flecha-atras {
+    font-size: 1.3rem;
+    transition: transform .3s ease;
+}
+
+.enlace:hover .flecha-atras {
+    transform: translateX(-4px);
+}
+
+.espacio {
+    width: 65px;
+}
 /* CONTENEDOR PRINCIPAL */
 
 .container {

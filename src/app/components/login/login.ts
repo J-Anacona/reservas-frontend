@@ -17,12 +17,16 @@ export class Login {
 
   email = '';
   password = '';
+  mostrarPassword = false;
 
   constructor(
     private auth: Auth,
     private router: Router,
     private notification: NotificationService
   ) {}
+  alternarPassword(): void {
+  this.mostrarPassword = !this.mostrarPassword;
+}
 
   iniciarSesion(): void {
 
@@ -100,7 +104,9 @@ export class Login {
           'Error del servidor'
         );
       }
+      
 
     });
+    
   }
 }

@@ -1,10 +1,9 @@
 
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CitasService } from '../../services/citas';
 import { Auth } from '../../services/auth';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-appointments',
@@ -21,8 +20,8 @@ export class ViewAppointments implements OnInit {
   constructor(
     private citasService: CitasService,
     private auth: Auth,
-    private router: Router,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +55,11 @@ export class ViewAppointments implements OnInit {
     return this.citas.filter(cita =>
       cita.estado?.trim().toLowerCase() === 'pendiente'
     );
+  }
+
+  // Volver a la pantalla anterior
+  volver(): void {
+    this.location.back();
   }
 
 }
