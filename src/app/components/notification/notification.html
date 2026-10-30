@@ -1,0 +1,29 @@
+<div
+  *ngIf="notificacion as aviso"
+  class="notificacion"
+  [ngClass]="'notificacion--' + aviso.tipo"
+  role="alert"
+  aria-live="polite">
+
+  <div class="icono">
+    <span *ngIf="aviso.tipo === 'exito'">✓</span>
+    <span *ngIf="aviso.tipo === 'error'">×</span>
+    <span *ngIf="aviso.tipo === 'advertencia'">!</span>
+    <span *ngIf="aviso.tipo === 'info'">i</span>
+  </div>
+
+  <div class="contenido">
+    <h3>{{ aviso.titulo }}</h3>
+    <p>{{ aviso.mensaje }}</p>
+  </div>
+
+  <button
+    type="button"
+    class="cerrar"
+    (click)="cerrar()">
+    ×
+  </button>
+
+  <div class="progreso"></div>
+
+</div>
